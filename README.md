@@ -1,6 +1,24 @@
 # ibd2sql2csv
 ibd2sql2csv is a dual-purpose toolset with two scripts: one converts InnoDB .ibd files to SQL with DDL generation, and the other transforms SQL INSERT statements into CSV format. It simplifies database extraction and migration, making data handling efficient and structured.
 
+---
+
+## Common Issues
+
+### Error: Schema mismatch with row versions
+
+When importing tables, you might encounter the MySQL/InnoDB error:
+
+```
+Error Code: 1808. Schema mismatch (CFG file is missing and source table is found to have row versions. CFG file is must to IMPORT tables with row versions.)
+```
+
+**Solution with `ibd2sql2csv`:**
+
+If you don’t have the `.cfg` file, this tool allows you to recover your data **directly from the `.ibd` file**. `ibd2sql` can parse the table structure, extract rows, and generate SQL or CSV output **without needing the CFG file**. This makes it possible to recover data even when the usual MySQL import fails due to missing configuration files.
+
+---
+
 1. **`ibd2sql`** – Parses `.ibd` files to generate SQL and DDL statements.
 2. **`sql2csv`** – Converts SQL INSERT statements into CSV format for easy data handling.
 
@@ -28,14 +46,6 @@ This repository simplifies database recovery, migration, and analysis.
 git clone https://github.com/jrmohsinkhan/ibd2sql2csv.git
 cd ibd2sql2csv
 ```
-
-2. Install dependencies (recommended in a virtual environment):
-
-```bash
-pip install -r requirements.txt
-```
-
----
 
 ## Usage
 
@@ -101,7 +111,4 @@ Contributions are welcome. Please open an issue or submit a pull request for new
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
-
-
-Do you want me to do that too?
 
