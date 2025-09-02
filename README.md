@@ -55,6 +55,12 @@ cd ibd2sql2csv
 python ibd2sql.py /path/to/table.ibd --ddl --sql --output ./output_dir
 ```
 
+solution for encoding error
+
+```bash
+python -X utf8 main.py employees.ibd --ddl --sql --output ./outdir
+```
+
 Options include:
 
 * `--ddl [history|disable-keys|keys-after]` – Generate DDL statements.
@@ -86,6 +92,11 @@ python sql2csv.py input.sql output.csv
 python ibd2sql.py employees.ibd --ddl --sql --output ./output
 ```
 
+Try running this is get encoding error!!!!
+```bash
+python -X utf8 main.py employees.ibd --ddl --sql --output ./outdir
+```
+
 2. Generate CSV from SQL inserts:
 
 ```bash
@@ -97,6 +108,13 @@ python sql2csv.py ./output/employees.sql employees.csv
 ```bash
 python ibd2sql.py employees.ibd --web
 ```
+
+---
+
+##Credits
+
+This tool uses the ibd2sql
+ library by DDCW as the core engine for parsing .ibd files. Full credit goes to the original author for their work.
 
 ---
 
